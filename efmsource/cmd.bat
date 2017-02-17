@@ -1,0 +1,2 @@
+efm rdtype.b rdcenter.in rdendpts.in rdid.b padgridpat.in sectionauproj.in pads.b padinfo.in sagebrush.b nontraverse.b coreareas.b subsurf.b surfowner.b lekpts.in dem.b ausections.in buildbas.in none none sectionattr.in sectionpwlist.in padpatcoords.in grtspts.in  prioritysids.in lekperim.b areapatchids.b rdverts.in -48 1 1 2 2 0.25 1 
+ 
