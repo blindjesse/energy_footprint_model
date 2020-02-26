@@ -1,6 +1,7 @@
 /* ran23.c */
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 
 
 #define   IM1 2147483563
@@ -24,12 +25,12 @@ extern float	kdum;
 
 float Ran23(float *kdum) /* idum is initialized with a a number <0 */
 {
- int           j;
- long          k;
- static  long  kdum2=123456789;
- static  long  iy=0;
- static long   iv[NTAB];
- float         temp;
+ int            j;
+ long           k;
+ static int32_t kdum2=123456789;
+ static int32_t iy=0;
+ static int32_t iv[NTAB];
+ float          temp;
 
  if(*kdum<=0){
    if(-(*kdum)<1)*kdum=1;

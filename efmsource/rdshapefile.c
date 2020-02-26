@@ -24,6 +24,7 @@ Note that store is hard coded to 500000 (max rdid of <500000).
 #include <stdlib.h>
 #include <string.h>
 #include "rdshapefile.h"
+#include "file_operations.h"
  
 
  
@@ -61,13 +62,13 @@ void	RdShapefile(int repnumber, int duration, int datarecord)
 			 CreateRDJ();  /* creates the info to join to the merged road file */
 
 			/* rename rdlines#.csv to rdlines.csv */
-			strcpy(cmd,"if EXIST rdlines.csv (del rdlines.csv)");system(cmd);
+      sprintf(cmd,REMOVE_IF_EXISTS,"rdlines.csv");system(cmd);
 
 			/* copy npads#.csv to npads.csv */
 			strcpy(nam,"rdl");sprintf(number,"%d",i);strcat(nam,number);
 			sprintf(number,"%d",time);strcat(nam,number);
 			strcat(nam,".csv");
-			strcpy(cmd,"copy ");strcat(cmd,nam);strcat(cmd," rdlines.csv");
+			strcpy(cmd,COPY);strcat(cmd,nam);strcat(cmd," rdlines.csv");
 			printf("%s\n",cmd);
 			system(cmd);
 
@@ -79,29 +80,29 @@ void	RdShapefile(int repnumber, int duration, int datarecord)
 			strcpy(prefix,"rdrep");sprintf(number,"%d",i);strcat(prefix,number);
 			printf("Deleting files with prefix %s\n",prefix);
 			strcat(prefix,"*");
-			strcpy(cmd,"del ");strcat(cmd,prefix);system(cmd);
+			strcpy(cmd,REMOVE);strcat(cmd,prefix);system(cmd);
 			/* rename therds ** */
 			strcpy(prefix,"rdrep");sprintf(number,"%d",i);strcat(prefix,number);sprintf(number,"%d",time);strcat(prefix,number);
 
-			strcpy(cmd,"rename therds.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therds.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therds.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therds.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therds.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therds.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
 			system(cmd);
 		
-			strcpy(cmd,"rename therds.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therds.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
 			system(cmd);
 
 
@@ -109,29 +110,29 @@ void	RdShapefile(int repnumber, int duration, int datarecord)
 			strcpy(prefix,"rdbufrep");sprintf(number,"%d",i);strcat(prefix,number);
 			printf("Deleting files with prefix %s\n",prefix);
 			strcat(prefix,"*");
-			strcpy(cmd,"del ");strcat(cmd,prefix);system(cmd);
+			strcpy(cmd,REMOVE);strcat(cmd,prefix);system(cmd);
 			/********** rename therdsbuf */
 			strcpy(prefix,"rdbufrep");sprintf(number,"%d",i);strcat(prefix,number);sprintf(number,"%d",time);strcat(prefix,number);
 
-			strcpy(cmd,"rename therdsbuf.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therdsbuf.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therdsbuf.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therdsbuf.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therdsbuf.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
 			system(cmd);
 
-			strcpy(cmd,"rename therdsbuf.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
 			system(cmd);
 		
-			strcpy(cmd,"rename therdsbuf.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
+			strcpy(cmd,RENAME);strcat(cmd,"therdsbuf.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
 			system(cmd);
 
 }	

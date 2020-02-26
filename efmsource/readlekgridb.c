@@ -44,6 +44,4 @@ void	ReadLekGridB(char nam[255])
 		}
 	}
 	free(SCptr);
-
-	fclose(fnam);
 }

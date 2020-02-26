@@ -49,6 +49,5 @@ void	ReadAreaPatchesB(char nam[255])
 	}
 	free(SCptr);
 
-	fclose(fnam);
 	printf("Max AreaPatchID= %d\n",mp);
 }

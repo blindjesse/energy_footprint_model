@@ -46,6 +46,5 @@ void	ReadPadsB()
 	}
 	free(SCptr);
 
-	fclose(themap);
 	printf("Initial no. of pads= %d\n",padnum);
 }

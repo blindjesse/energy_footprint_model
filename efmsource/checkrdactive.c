@@ -20,6 +20,7 @@ is only 1 pad connected by rdid, then many=0; else if count>1 and many==1 DONOT 
 #include "plss.h"
 #include "rdend.h"
 #include "rdgrid.h"
+#include "file_operations.h"
 
 extern		int	row,col;
 
@@ -77,8 +78,8 @@ void	CheckRdActive()
 
 
 	/* change the name of storeit */
-	strcpy(nam,"if EXIST storet (del storet)");system(nam);
-	strcpy(nam,"if EXIST storeit (copy storeit storet)");system(nam);
+  sprintf(nam,REMOVE_IF_EXISTS,"storet");system(nam);
+  sprintf(nam,COPY_IF_EXISTS,"storeit", "storet");system(nam);
 
 	fin=fopen("storet","r");
 	if(fin!=NULL) {

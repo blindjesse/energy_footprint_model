@@ -10,6 +10,7 @@ The end result is the generation of padrep# shapefile where # is the replication
 #include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
+#include "file_operations.h"
 
  
 typedef struct STOREPS{ /* indexed by ID */
@@ -93,33 +94,33 @@ void PadShapefile(int repnumber, int duration, int datarecord, char nam[255])
 
 
 	    /* rename npads#.csv to npads.csv */
-		strcpy(cmd,"if EXIST npads.csv (del npads.csv)");system(cmd);
+    sprintf(cmd, REMOVE_IF_EXISTS, "npads.csv"); 
 		/* copy npads#.csv to npads.csv */
 		strcpy(nam2,"npads");sprintf(number,"%d",i);strcat(nam2,number);strcat(nam2,".csv");
-		strcpy(cmd,"copy ");strcat(cmd,nam2);strcat(cmd," npads.csv");
+		strcpy(cmd,COPY);strcat(cmd,nam2);strcat(cmd," npads.csv");
 		printf("%s\n",cmd);
 		system(cmd);
 
 			/* rename centr#.csv to centr.csv */
-			strcpy(cmd,"if EXIST centr.csv (del centr.csv)");system(cmd);
+      sprintf(cmd, REMOVE_IF_EXISTS, "centr.csv");system(cmd);
 
 			/* copy npads#.csv to npads.csv */
 			strcpy(nam2,"centr");sprintf(number,"%d",i);strcat(nam2,number);
 			sprintf(number,"%d",time);strcat(nam2,number);
 			strcat(nam2,".csv");
-			strcpy(cmd,"copy ");strcat(cmd,nam2);strcat(cmd," centr.csv");
+			strcpy(cmd,COPY);strcat(cmd,nam2);strcat(cmd," centr.csv");
 			printf("%s\n",cmd);
 			system(cmd);
 
 
 			/* rename dodo#.csv to centr.csv */
-			strcpy(cmd,"if EXIST dodo.csv (del dodo.csv)");system(cmd);
+      sprintf(cmd, REMOVE_IF_EXISTS, "dodo.csv");system(cmd);
 
 			/* copy npads#.csv to npads.csv */
 			strcpy(nam2,"dodo");sprintf(number,"%d",i);strcat(nam2,number);
 			sprintf(number,"%d",time);strcat(nam2,number);
 			strcat(nam2,".csv");
-			strcpy(cmd,"copy ");strcat(cmd,nam2);strcat(cmd," dodo.csv");
+			strcpy(cmd,COPY);strcat(cmd,nam2);strcat(cmd," dodo.csv");
 			printf("%s\n",cmd);
 			system(cmd);
 
@@ -134,29 +135,29 @@ void PadShapefile(int repnumber, int duration, int datarecord, char nam[255])
 		strcpy(prefix,"padrep");sprintf(number,"%d",i);		strcat(prefix,number);
 		printf("Deleting files with prefix %s\n",prefix);
 		strcat(prefix,"*");
-		strcpy(cmd,"del ");strcat(cmd,prefix);system(cmd);
+		strcpy(cmd,REMOVE);strcat(cmd,prefix);system(cmd);
 		/* rename thepads.** */
 		strcpy(prefix,"padrep");sprintf(number,"%d",i);strcat(prefix,number);sprintf(number,"%d",time);strcat(prefix,number);
 
-		strcpy(cmd,"rename thepads.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.dbf ");strcpy(nam,prefix);strcat(nam,".dbf");strcat(cmd,nam);
 		system(cmd);
 
-		strcpy(cmd,"rename thepads.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.sbn ");strcpy(nam,prefix);strcat(nam,".sbn");strcat(cmd,nam);
 		system(cmd);
 
-		strcpy(cmd,"rename thepads.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.prj ");strcpy(nam,prefix);strcat(nam,".prj");strcat(cmd,nam);
 		system(cmd);
 
-		strcpy(cmd,"rename thepads.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.sbx ");strcpy(nam,prefix);strcat(nam,".sbx");strcat(cmd,nam);
 		system(cmd);
 
-		strcpy(cmd,"rename thepads.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.shp ");strcpy(nam,prefix);strcat(nam,".shp");strcat(cmd,nam);
 		system(cmd);
 
-		strcpy(cmd,"rename thepads.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.shp.xml ");strcpy(nam,prefix);strcat(nam,".shp.xml");strcat(cmd,nam);
 		system(cmd);
 		
-		strcpy(cmd,"rename thepads.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
+		strcpy(cmd,RENAME);strcat(cmd,"thepads.shx ");strcpy(nam,prefix);strcat(nam,".shx");strcat(cmd,nam);
 		system(cmd);
 }	
 

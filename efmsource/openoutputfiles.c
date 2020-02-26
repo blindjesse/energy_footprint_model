@@ -9,6 +9,7 @@
 #include "efm.h"
 #include "geo.h"
 #include "padalloc.h"
+#include "file_operations.h"
 
  
 
@@ -54,11 +55,11 @@ void	OpenOutputFiles()
 
 
 	/* deal with rdend pts.in which is stored as RDEND */
-	strcpy(nam,"if EXIST endpts.dat (del endpts.dat)");system(nam);
-	strcpy(nam,"copy ");strcat(nam,RDENDnam);strcat(nam," endpts.dat");system(nam);
+  sprintf(nam,REMOVE_IF_EXISTS,"endpts.dat");system(nam);
+	strcpy(nam,COPY);strcat(nam,RDENDnam);strcat(nam," endpts.dat");system(nam);
 	endpts=fopen("endpts.dat","a");
 
 
 	/* deal with storeit - stores previous deactivated roads */
-	strcpy(nam,"if EXIST storeit (del storeit) ");system(nam);
+  sprintf(nam, REMOVE_IF_EXISTS,"storeit");system(nam);
 }

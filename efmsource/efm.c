@@ -388,7 +388,6 @@ main(int argc, char *argv[])
 			fclose(padpatID);		/* Fill/PadSize - records pattern ID and centroid utms of newly created pads */
 			fclose(sumrates);		/* records summary of pads auxproj - output in Perform() () */
 			fclose(sumratesp);
-			fclose(dumppads);		/* records pad and active well info */
 			fclose(mrecord);        /* records active pads/wells before, after deactivation */
 			fclose(ratef);			/* stores rate of establishment info - used in Perform */
 			fclose(croads);			/* time-interval rdlines */

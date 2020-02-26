@@ -1,6 +1,7 @@
 /* ran22.c */
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 
 
 #define   IM1 2147483563
@@ -24,12 +25,12 @@ extern float	jdum;
 
 float Ran22(float *jdum) /* idum is initialized with a a number <0 */
 {
- int           j;
- long          k;
- static  long  jdum2=123456789;
- static  long  iy=0;
- static long   iv[NTAB];
- float         temp;
+ int            j;
+ long           k;
+ static int32_t jdum2=123456789;
+ static int32_t iy=0;
+ static int32_t iv[NTAB];
+ float          temp;
 
  if(*jdum<=0){
    if(-(*jdum)<1)*jdum=1;
